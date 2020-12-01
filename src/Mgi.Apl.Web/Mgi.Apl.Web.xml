@@ -1,0 +1,30 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Mgi.Apl.Web</name>
+    </assembly>
+    <members>
+        <member name="P:Mgi.Apl.Web.Data.UserIdentity.AuthenticationType">
+            <summary>
+            返回验证方式
+            </summary>
+        </member>
+        <member name="P:Mgi.Apl.Web.Data.UserIdentity.IsAuthenticated">
+            <summary>
+            是否验证
+            </summary>
+        </member>
+        <member name="P:Mgi.Apl.Web.Data.UserIdentity.Name">
+            <summary>
+            返回用户
+            </summary>
+        </member>
+        <member name="M:Mgi.Apl.Web.Filters.AddTokenHeaderOperationFilter.Apply(Swashbuckle.AspNetCore.Swagger.Operation,Swashbuckle.AspNetCore.SwaggerGen.OperationFilterContext)">
+            <summary>
+            Adds an authorization header to the given operation in Swagger. 
+            </summary>
+            <param name="operation">The Swashbuckle operation.</param>
+            <param name="context"></param>
+        </member>
+    </members>
+</doc>

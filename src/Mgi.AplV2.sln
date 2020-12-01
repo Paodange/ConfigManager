@@ -1,0 +1,62 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.28803.352
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Web", "Web", "{E8F125F9-7CD2-4EC6-A363-B536F72CA249}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Mgi.Apl.Model", "Mgi.Apl.Model\Mgi.Apl.Model.csproj", "{C4148AEB-1DA6-4754-8AD2-3ACAE11BBA6A}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Mgi.Apl.Repository", "Mgi.Apl.Repository\Mgi.Apl.Repository.csproj", "{0F0E867B-483C-41F3-9181-C9A25DF7A0BB}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Mgi.Apl.Service", "Mgi.Apl.Service\Mgi.Apl.Service.csproj", "{735BD7B5-DA3A-43E5-A6BD-A5D4A3A5D8D6}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Mgi.Apl.Web", "Mgi.Apl.Web\Mgi.Apl.Web.csproj", "{BCA34B68-DD27-46EC-A638-FF03835E6FC1}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Mgi.Framework.Core", "Mgi.Framework.Core\Mgi.Framework.Core.csproj", "{A7B85345-F3E6-4C8D-804A-F4E7C7F28F66}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Mgi.Framework.Util", "Mgi.Framework.Util\Mgi.Framework.Util.csproj", "{35424CE3-0B34-434F-A978-61AA05B3064A}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{C4148AEB-1DA6-4754-8AD2-3ACAE11BBA6A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C4148AEB-1DA6-4754-8AD2-3ACAE11BBA6A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C4148AEB-1DA6-4754-8AD2-3ACAE11BBA6A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C4148AEB-1DA6-4754-8AD2-3ACAE11BBA6A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0F0E867B-483C-41F3-9181-C9A25DF7A0BB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0F0E867B-483C-41F3-9181-C9A25DF7A0BB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0F0E867B-483C-41F3-9181-C9A25DF7A0BB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0F0E867B-483C-41F3-9181-C9A25DF7A0BB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{735BD7B5-DA3A-43E5-A6BD-A5D4A3A5D8D6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{735BD7B5-DA3A-43E5-A6BD-A5D4A3A5D8D6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{735BD7B5-DA3A-43E5-A6BD-A5D4A3A5D8D6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{735BD7B5-DA3A-43E5-A6BD-A5D4A3A5D8D6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BCA34B68-DD27-46EC-A638-FF03835E6FC1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BCA34B68-DD27-46EC-A638-FF03835E6FC1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BCA34B68-DD27-46EC-A638-FF03835E6FC1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BCA34B68-DD27-46EC-A638-FF03835E6FC1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A7B85345-F3E6-4C8D-804A-F4E7C7F28F66}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A7B85345-F3E6-4C8D-804A-F4E7C7F28F66}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A7B85345-F3E6-4C8D-804A-F4E7C7F28F66}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A7B85345-F3E6-4C8D-804A-F4E7C7F28F66}.Release|Any CPU.Build.0 = Release|Any CPU
+		{35424CE3-0B34-434F-A978-61AA05B3064A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{35424CE3-0B34-434F-A978-61AA05B3064A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{35424CE3-0B34-434F-A978-61AA05B3064A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{35424CE3-0B34-434F-A978-61AA05B3064A}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{0F0E867B-483C-41F3-9181-C9A25DF7A0BB} = {E8F125F9-7CD2-4EC6-A363-B536F72CA249}
+		{735BD7B5-DA3A-43E5-A6BD-A5D4A3A5D8D6} = {E8F125F9-7CD2-4EC6-A363-B536F72CA249}
+		{BCA34B68-DD27-46EC-A638-FF03835E6FC1} = {E8F125F9-7CD2-4EC6-A363-B536F72CA249}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {44C19492-2093-43BA-9FB8-A6771FBBA0BA}
+	EndGlobalSection
+EndGlobal

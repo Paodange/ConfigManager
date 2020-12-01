@@ -1,0 +1,26 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <DocumentationFile>bin\Debug\Mgi.Apl.Service.xml</DocumentationFile>
+    <NoWarn>1701;1702;1591</NoWarn>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="AutoMapper" Version="10.1.1" />
+    <PackageReference Include="Microsoft.Extensions.PlatformAbstractions" Version="1.1.0" />
+    <PackageReference Include="NPOI" Version="2.5.1" />
+    <PackageReference Include="System.ComponentModel.Annotations" Version="5.0.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Mgi.Apl.Model\Mgi.Apl.Model.csproj" />
+    <ProjectReference Include="..\Mgi.Apl.Repository\Mgi.Apl.Repository.csproj" />
+    <ProjectReference Include="..\Mgi.Framework.Core\Mgi.Framework.Core.csproj" />
+    <ProjectReference Include="..\Mgi.Framework.Util\Mgi.Framework.Util.csproj" />
+  </ItemGroup>
+
+</Project>
