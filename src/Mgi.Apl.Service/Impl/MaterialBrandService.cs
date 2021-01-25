@@ -4,6 +4,7 @@ using Mgi.Apl.Model.DTO;
 using Mgi.Apl.Model.Entity;
 using Mgi.Apl.Repository;
 using Mgi.Framework.Core.ApiContract;
+using Microsoft.AspNetCore.Http;
 
 namespace Mgi.Apl.Service.Impl
 {
@@ -11,7 +12,7 @@ namespace Mgi.Apl.Service.Impl
     {
         IMaterialRepository MaterialRepository { get; }
         public MaterialBrandService(IMapper mapper, IMaterialBrandRepository repository,
-            IMaterialRepository materialRepository, IAttachmentRepository attachmentRepository) : base(mapper, repository, attachmentRepository)
+            IMaterialRepository materialRepository, IAttachmentRepository attachmentRepository, IHttpContextAccessor accessor) : base(mapper, repository, attachmentRepository, accessor)
         {
             MaterialRepository = materialRepository;
         }

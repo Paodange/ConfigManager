@@ -12,6 +12,7 @@ namespace Mgi.Apl.Web.Controllers
     /// </summary>
     [Route("api/file")]
     [ApiController]
+    [Authorize]
     public class AttachmentController : ControllerBase
     {
         IAttachmentService Service { get; }

@@ -15,7 +15,6 @@ namespace Mgi.Apl.Model
         [Key, DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         [Column("id")]
         [Identity]
-        [IgnoreUpdate]
         public PK Id { get; set; }
     }
 }

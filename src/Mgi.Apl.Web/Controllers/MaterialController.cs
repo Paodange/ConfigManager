@@ -16,6 +16,7 @@ namespace Mgi.Apl.Web.Controllers
     [Route("api/material")]
     [Produces("application/json")]
     [ApiController]
+    [Authorize]
     public class MaterialController : ControllerBase
     {
         public IMaterialService Service { get; }

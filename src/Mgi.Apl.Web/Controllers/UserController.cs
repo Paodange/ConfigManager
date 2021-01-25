@@ -17,6 +17,7 @@ namespace Mgi.Apl.Web.Controllers
     [Produces("application/json")]
     [Consumes("application/json")]
     [ApiController]
+    [Authorize]
     public class UserController : ControllerBase
     {
         /// <summary>
@@ -41,7 +42,10 @@ namespace Mgi.Apl.Web.Controllers
         [AllowAnonymous]
         public ApiResponse<LoginResponse> Login(LoginBO bo)
         {
-            return Service.Login(bo);
+            return new ApiResponse<LoginResponse>(ResponseCode.Ok, new LoginResponse()
+            {
+                Token = Service.Login(bo)
+            });
         }
         /// <summary>
         /// 注销
@@ -49,6 +53,7 @@ namespace Mgi.Apl.Web.Controllers
         /// <returns></returns>
         [Route("logout")]
         [HttpPost]
+        [AllowAnonymous]
         public ApiResponse Logout()
         {
             return ResponseCode.Ok;

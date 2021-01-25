@@ -1,4 +1,4 @@
-﻿namespace Mgi.Apl.Web
+﻿namespace Mgi.Apl.Service
 {
     public class JwtSetting
     {

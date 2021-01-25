@@ -1,30 +1,19 @@
-﻿using Mgi.Apl.Service;
-using Mgi.Framework.Core.ApiContract;
-using System;
-using System.Security.Principal;
+﻿using System.Security.Principal;
 
-namespace Mgi.Apl.Web.Data
+namespace Mgi.Apl.Model
 {
+    public interface IUserIdentity : IIdentity
+    {
+        int UserId { get; }
+        string UserName { get; }
+        string RealName { get; }
+    }
     public class UserIdentity : IUserIdentity, IIdentity
     {
         public int UserId { get; set; }
 
         public string UserName { get; set; }
         public string RealName { get; set; }
-
-        public string Password { get; set; }
-
-        public string Role { get; set; }
-
-        public string RemoteIP { get; set; }
-
-        public string ComputerName { get; set; }
-
-        public string HardwareId { get; set; }
-
-        public string UserAgent { get; set; }
-
-        public DateTime ExpireTime { get; set; }
 
         /// <summary>
         /// 返回验证方式

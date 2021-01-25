@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Reflection;
+using System.Security.Claims;
 using System.Threading;
 using AutoMapper;
 using Mgi.Apl.Model;
@@ -13,6 +14,7 @@ using Mgi.Framework.Core.ApiContract;
 using Mgi.Framework.Util;
 using Mgi.Framework.Util.Extention;
 using MicroOrm.Dapper.Repositories;
+using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.PlatformAbstractions;
 using NPOI.SS.UserModel;
 using NPOI.XSSF.UserModel;
@@ -27,12 +29,14 @@ namespace Mgi.Apl.Service
         public IMapper Mapper { get; }
         public IDapperRepository<T, PK> Repository { get; }
 
-        public IAttachmentRepository AttachmentRepository { get; set; }
-        public AbstractService(IMapper mapper, IDapperRepository<T, PK> repository, IAttachmentRepository attachmentRepository)
+        public IAttachmentRepository AttachmentRepository { get; }
+        public IHttpContextAccessor HttpContextAccessor { get; }
+        public AbstractService(IMapper mapper, IDapperRepository<T, PK> repository, IAttachmentRepository attachmentRepository, IHttpContextAccessor accessor)
         {
             Mapper = mapper;
             Repository = repository;
             AttachmentRepository = attachmentRepository;
+            HttpContextAccessor = accessor;
         }
         public virtual TDTO GetById(PK id)
         {
@@ -175,7 +179,7 @@ namespace Mgi.Apl.Service
         }
         protected virtual void FillEditableModel(EditableModel<PK> em, bool isInsert)
         {
-            var userIdentity = Thread.CurrentPrincipal.Identity as IUserIdentity;
+            var userIdentity = GetUserIdentity();
             if (isInsert)
             {
                 em.CreateTime = DateTime.Now;
@@ -188,7 +192,17 @@ namespace Mgi.Apl.Service
         }
         protected IUserIdentity GetUserIdentity()
         {
-            return Thread.CurrentPrincipal?.Identity as IUserIdentity;
+            //new Claim("Id", user.Id.ToString()),
+            //        new Claim(ClaimTypes.NameIdentifier, user.UserName),
+            //        new Claim(ClaimTypes.Name, user.RealName),
+            //        new Claim(ClaimTypes.Email, user.Email),
+            var cl = HttpContextAccessor.HttpContext.User;
+            return new UserIdentity()
+            {
+                RealName = cl.FindFirst(ClaimTypes.Name).Value,
+                UserId = int.Parse(cl.FindFirst("Id").Value),
+                UserName = cl.FindFirst(ClaimTypes.NameIdentifier).Value,
+            };
         }
     }
 }

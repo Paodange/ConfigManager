@@ -20,6 +20,7 @@ using Microsoft.Extensions.PlatformAbstractions;
 using NPOI.SS.UserModel;
 using NPOI.XSSF.UserModel;
 using Dapper;
+using Microsoft.AspNetCore.Http;
 
 namespace Mgi.Apl.Service.Impl
 {
@@ -42,7 +43,8 @@ namespace Mgi.Apl.Service.Impl
             IMaterialCategoryRepository materialCategoryRepository,
             IMaterialCategoryService materialCategoryService,
             IMaterialTypeService materialTypeService,
-            IAttachmentRepository attachmentRepository) : base(mapper, repository, attachmentRepository)
+            IAttachmentRepository attachmentRepository,
+            IHttpContextAccessor accessor) : base(mapper, repository, attachmentRepository, accessor)
         {
             ConfigRepository = configRepository;
             BrandRepository = brandRepository;

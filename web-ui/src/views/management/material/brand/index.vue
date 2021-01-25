@@ -26,22 +26,30 @@
         id="table-main"
         ref="table"
         height="50"
-        v-el-height-adaptive-table="{table: $refs.table}"
+        v-el-height-adaptive-table="{ table: $refs.table }"
       >
-        <el-table-column align="center" :label="$t('genericList.no')">
-          <template slot-scope="scope">{{ scope.$index+1 }}</template>
+        <el-table-column
+          align="center"
+          :label="$t('genericList.no')"
+          type="index"
+        >
         </el-table-column>
         <el-table-column align="center" :label="$t('material.brand.code')">
-          <template slot-scope="scope">{{ scope.row.Code }}</template>
+          <template slot-scope="scope">{{ scope.row.code }}</template>
         </el-table-column>
         <el-table-column align="center" :label="$t('material.brand.name')">
-          <template slot-scope="scope">{{ scope.row.Name }}</template>
+          <template slot-scope="scope">{{ scope.row.name }}</template>
         </el-table-column>
         <el-table-column align="center" :label="$t('material.brand.desc')">
-          <template slot-scope="scope">{{ scope.row.Desc }}</template>
+          <template slot-scope="scope">{{ scope.row.desc }}</template>
         </el-table-column>
-        <el-table-column align="center" :label="$t('material.brand.modifyTime')">
-          <template slot-scope="scope">{{ scope.row.ModifyTime|dateformat('YYYY-MM-DD HH:mm:ss') }}</template>
+        <el-table-column
+          align="center"
+          :label="$t('material.brand.modifyTime')"
+        >
+          <template slot-scope="scope">{{
+            scope.row.modifyTime | dateformat("YYYY-MM-DD HH:mm:ss")
+          }}</template>
         </el-table-column>
       </el-table>
     </GenericList>
@@ -53,28 +61,28 @@
       @cancel="edit_cancel"
     >
       <el-form :model="form" ref="form" :rules="rules" prop="form">
-        <el-form-item :label="$t('material.brand.code')" prop="Code">
+        <el-form-item :label="$t('material.brand.code')" prop="code">
           <el-input
-            v-model="form.Code"
+            v-model="form.code"
             ref="code"
             name="code"
             :maxlength="50"
-            :disabled="this.editMode===true"
+            :disabled="this.editMode === true"
             :placeholder="$t('material.brand.codePlaceHolder')"
           ></el-input>
         </el-form-item>
-        <el-form-item :label="$t('material.brand.name')" prop="Name">
+        <el-form-item :label="$t('material.brand.name')" prop="name">
           <el-input
-            v-model="form.Name"
+            v-model="form.name"
             ref="name"
             name="name"
             :maxlength="50"
             :placeholder="$t('material.brand.namePlaceHolder')"
           ></el-input>
         </el-form-item>
-        <el-form-item :label="$t('material.brand.desc')" prop="Desc">
+        <el-form-item :label="$t('material.brand.desc')" prop="desc">
           <el-input
-            v-model="form.Desc"
+            v-model="form.desc"
             ref="desc"
             name="desc"
             :maxlength="1000"
@@ -98,10 +106,10 @@ export default {
   data() {
     return {
       form: {
-        Id: "",
-        Name: "",
-        Code: "",
-        Desc: ""
+        id: 0,
+        name: "",
+        code: "",
+        desc: "",
       },
       list: null,
       totalRows: 0,
@@ -112,44 +120,44 @@ export default {
       currentRow: null,
       editMode: false,
       rules: {
-        Name: [
+        name: [
           {
             required: true,
             trigger: "blur",
-            message: this.$t("material.brand.nameIsRequired")
+            message: this.$t("material.brand.nameIsRequired"),
           },
           {
             min: 1,
             max: 50,
             trigger: "blur",
-            message: this.$t("material.brand.nameLength")
-          }
+            message: this.$t("material.brand.nameLength"),
+          },
         ],
-        Code: [
+        code: [
           {
             required: true,
             trigger: "blur",
-            message: this.$t("material.brand.codeIsRequired")
+            message: this.$t("material.brand.codeIsRequired"),
           },
           {
             pattern: /^[A-Z0-9]{2,2}$/,
-            message: this.$t("material.brand.codeRule")
-          }
+            message: this.$t("material.brand.codeRule"),
+          },
         ],
-        Desc: [
+        desc: [
           {
             min: 0,
             max: 1000,
             trigger: "blur",
-            message: this.$t("material.brand.descLength")
-          }
-        ]
-      }
+            message: this.$t("material.brand.descLength"),
+          },
+        ],
+      },
     };
   },
   watch: {
     totalRows: {
-      handler: function(val) {
+      handler: function (val) {
         debugger;
         let pageCount =
           val <= this.pageSize
@@ -161,8 +169,8 @@ export default {
           this.pageIndex = pageCount;
         }
       },
-      deep: true
-    }
+      deep: true,
+    },
   },
   created() {
     this.$nextTick(() => {
@@ -189,16 +197,16 @@ export default {
       this.listLoading = true;
       const arg = params || {
         pageSize: this.pageSize,
-        pageIndex: this.pageIndex
+        pageIndex: this.pageIndex,
       };
       api
         .search(arg)
-        .then(resp => {
-          this.totalRows = resp.Data.TotalRows;
-          this.list = resp.Data.Items;
+        .then((resp) => {
+          this.totalRows = resp.data.totalRows;
+          this.list = resp.data.items;
           this.listLoading = false;
         })
-        .catch(err => (this.listLoading = false));
+        .catch((err) => (this.listLoading = false));
     },
     add() {
       this.editMode = false;
@@ -206,7 +214,7 @@ export default {
       for (let k in this.form) {
         this.form[k] = "";
       }
-      this.$nextTick(function() {
+      this.$nextTick(function () {
         this.$refs.form.clearValidate();
         this.$refs.code.focus();
       });
@@ -218,10 +226,10 @@ export default {
         for (let k in this.form) {
           this.form[k] = this.currentRow[k];
         }
-        this.$nextTick(function() {
+        this.$nextTick(function () {
           this.$refs.form.clearValidate();
-          api.detail(this.currentRow.Id).then(resp => {
-            this.currentRow = resp.Data;
+          api.detail(this.currentRow.Id).then((resp) => {
+            this.currentRow = resp.data;
           });
         });
       }
@@ -229,8 +237,8 @@ export default {
     del() {
       if (this.currentRow) {
         this.$confirm(this.$t("genericList.deleteConfirm")).then(() =>
-          api.del(this.currentRow.Id).then(resp => {
-            if (resp.Code === 200) {
+          api.del(this.currentRow.Id).then((resp) => {
+            if (resp.code === 200) {
               this.getData();
             }
           })
@@ -253,19 +261,19 @@ export default {
         params = {
           pageSize: this.pageSize,
           pageIndex: this.pageIndex,
-          keyword: keyword
+          keyword: keyword,
         };
       } else {
         params = {
-          pagination: false
+          pagination: false,
         };
       }
       api
         .exportXls(params)
-        .then(resp => {
-          downloadFile(resp.Data);
+        .then((resp) => {
+          downloadFile(resp.data);
         })
-        .catch(err => {
+        .catch((err) => {
           console.log(err);
         });
     },
@@ -274,7 +282,7 @@ export default {
       this.getData({
         pageSize: this.pageSize,
         pageIndex: this.pageIndex,
-        keyword: keyword
+        keyword: keyword,
       });
     },
     edit_cancel() {
@@ -282,18 +290,18 @@ export default {
       this.editDialogVisible = false;
     },
     edit_ok() {
-      this.$refs.form.validate(valid => {
+      this.$refs.form.validate((valid) => {
         if (valid) {
           if (this.editMode) {
-            api.update(this.form).then(resp => {
-              if (resp.Code === 200) {
+            api.update(this.form).then((resp) => {
+              if (resp.code === 200) {
                 this.editDialogVisible = false;
                 this.getData();
               }
             });
           } else {
-            api.create(this.form).then(resp => {
-              if (resp.Code === 200) {
+            api.create(this.form).then((resp) => {
+              if (resp.code === 200) {
                 this.editDialogVisible = false;
                 this.getData();
               }
@@ -306,8 +314,8 @@ export default {
       });
     },
     generateTitle,
-    downloadFile
-  }
+    downloadFile,
+  },
 };
 </script>
 

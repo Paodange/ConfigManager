@@ -1,9 +1,6 @@
 ﻿using Autofac;
-using Autofac.Extensions.DependencyInjection;
-using Autofac.Extras.DynamicProxy;
 using AutoMapper;
 using Mgi.Apl.Service;
-using Mgi.Apl.Web.Data;
 using Mgi.Apl.Web.Filters;
 using Mgi.Apl.Web.Interceptors;
 using Mgi.Framework.Core;
@@ -14,17 +11,15 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.FileProviders;
 using Microsoft.Extensions.Hosting;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
-using Newtonsoft.Json.Serialization;
-using Swashbuckle.AspNetCore.Swagger;
 using System;
 using System.IO;
 using System.Linq;
 using System.Reflection;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace Mgi.Apl.Web
@@ -56,7 +51,7 @@ namespace Mgi.Apl.Web
                 {
                     OnTokenValidated = context =>
                     {
-                        var name = context.Principal.Identity.Name;
+                        Thread.CurrentPrincipal = context.Principal;
                         return Task.CompletedTask;
                     }
                 };
@@ -74,6 +69,7 @@ namespace Mgi.Apl.Web
                 };
             });
             #endregion
+            services.AddHttpContextAccessor();
             services.AddControllers(
                             options =>
                             {
@@ -84,8 +80,8 @@ namespace Mgi.Apl.Web
                             .SetCompatibilityVersion(CompatibilityVersion.Version_3_0)
                             .AddControllersAsServices().AddJsonOptions(options =>
                             {
-                                options.JsonSerializerOptions.DictionaryKeyPolicy = null;
-                                options.JsonSerializerOptions.PropertyNamingPolicy = null;
+                                //options.JsonSerializerOptions.DictionaryKeyPolicy = null;
+                                //options.JsonSerializerOptions.PropertyNamingPolicy = null;
                             });
             services.Configure<ApiBehaviorOptions>(options =>
             {

@@ -7,6 +7,7 @@ using Mgi.Apl.Model.Entity;
 using Mgi.Apl.Repository;
 using Mgi.Framework.Core;
 using Mgi.Framework.Core.ApiContract;
+using Microsoft.AspNetCore.Http;
 
 namespace Mgi.Apl.Service.Impl
 {
@@ -22,7 +23,8 @@ namespace Mgi.Apl.Service.Impl
             IMaterialRepository materialRepository,
             IMaterialTypeConfigRepository materialConfigTypeRepository,
             IMaterialConfigRepository materialConfigRepository,
-            IAttachmentRepository attachmentRepository) : base(mapper, repository, attachmentRepository)
+            IAttachmentRepository attachmentRepository,
+            IHttpContextAccessor accessor) : base(mapper, repository, attachmentRepository, accessor)
         {
             MaterialCategoryService = materialCategoryService;
             MaterialRepository = materialRepository;

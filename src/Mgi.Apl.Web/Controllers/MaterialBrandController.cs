@@ -4,6 +4,7 @@ using Mgi.Apl.Model.Entity;
 using Mgi.Apl.Service;
 using Mgi.Framework.Core;
 using Mgi.Framework.Core.ApiContract;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System.Threading;
 
@@ -13,6 +14,7 @@ namespace Mgi.Apl.Web.Controllers
     [Produces("application/json")]
     [Consumes("application/json")]
     [ApiController]
+    [Authorize]
     public class MaterialBrandController : ControllerBase
     {
         public IMaterialBrandService Service { get; }
